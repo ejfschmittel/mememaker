@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useRef, useEffect} from "react"
+
+
+import Canvas from "./components/Canvas";
+import CurrentlySelectedElementUI from "./components/UIPanelCurrentElement";
+import CreateElementUI from "./components/UIPanelCreatElement";
+import UIPanelElementOverview from "./components/UIPanelElementOverview";
+import {CanvasOjbectContextProvider} from "./contexts/CanvasObjectContext"
+
+import "./styles/main.scss";
 
 function App() {
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CanvasOjbectContextProvider>
+      <div className="App">
+        <Canvas />
+        <CurrentlySelectedElementUI />
+        <CreateElementUI />
+        <UIPanelElementOverview />
+      </div>
+    </CanvasOjbectContextProvider>
   );
 }
 

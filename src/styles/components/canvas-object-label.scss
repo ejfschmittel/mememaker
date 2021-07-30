@@ -1,0 +1,66 @@
+.object-label{
+    width: 100%;
+    background: #333;
+    border-radius: 3px;
+    color: #fff;
+    padding: .5rem;
+    margin-bottom: .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 .2rem .3rem rgba(0,0,0,.8);
+
+    &--active{
+        background: green;
+    }
+
+    &__type{
+        font-size: .8rem;
+    }
+
+    &__info{
+        display: flex;
+        align-items: center;
+    }
+
+    &__content{
+        font-size: 1.3rem;
+        margin-left: 1rem;
+    }
+
+    &__delete{
+        background: red;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: .2rem .5rem;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+
+        &:hover{
+            filter: saturate(.8);
+        }
+
+    }
+}
+
+.object-labels{
+    padding: .5rem;
+}
+
+
+.create-selector{
+    display: flex;
+    &__btn{
+        display: block;
+        height: 8rem;
+        flex: 1;
+        cursor: pointer;
+
+        &--active{
+            filter: saturate(.8);
+            background: red;
+        }
+    }
+}
