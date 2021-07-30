@@ -13,14 +13,12 @@ function App() {
 
   
   return (
-    <CanvasOjbectContextProvider>
       <div className="App">
         <Canvas />
         <CurrentlySelectedElementUI />
         <CreateElementUI />
         <UIPanelElementOverview />
       </div>
-    </CanvasOjbectContextProvider>
   );
 }
 

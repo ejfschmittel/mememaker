@@ -1,11 +1,26 @@
 import React, {useContext} from "react"
-import CanvasObjectContext from "../contexts/CanvasObjectContext"
+import {useSelector} from "react-redux"
+import {CANVAS_OBJECT_TYPES} from "../redux/canvasObjects/canvasObjects.types"
 
-import FontEditor from "./FontEditor"
+import TextEditor from "./ElementEditorText"
+import ImageEditor from "./ElementEditorImage"
 
 const CurrentlySelectedElementUI = () => {
+    const activeObject = useSelector((state) => state.canvasObjects.activeObject)
+    const objects = useSelector((state) => state.canvasObjects.objects)
 
-    const {objects, objectList, activeObject} = useContext(CanvasObjectContext)
+
+    const renderActiveObjectEdtior = (activeObject) => {
+        const obj = objects[activeObject];
+        switch(obj?.type){
+            case CANVAS_OBJECT_TYPES.TEXT:
+                return <TextEditor object={obj} />
+            case CANVAS_OBJECT_TYPES.IMAGE:
+                return <ImageEditor object={obj} />
+            default: 
+                return null;
+        }   
+    }
 
     return (
         <div className="selected-ui">
@@ -13,7 +28,7 @@ const CurrentlySelectedElementUI = () => {
             <div className="editor">
 
                 {activeObject ? 
-                    <FontEditor object={objects[activeObject]} />
+                   renderActiveObjectEdtior(activeObject)
                 :
                     "select an item to edit"
                 }

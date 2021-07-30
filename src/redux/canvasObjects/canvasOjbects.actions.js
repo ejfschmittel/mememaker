@@ -15,6 +15,7 @@ export const createTextObject = (text) => ({
         fill: "#ffffff",
         stroke: "#000000",
         strokeWidth: 2,
+        fontSize: 32,
     }
 })
 

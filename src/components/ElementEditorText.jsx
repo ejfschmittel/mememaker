@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from "react"
 import CanvasObjectContext from "../contexts/CanvasObjectContext"
-
+import { useDispatch } from "react-redux"
+import {updateObject} from "../redux/canvasObjects/canvasOjbects.actions"
 /*
     x, y, rotation
     text, color, outline, outline color
@@ -38,44 +39,47 @@ const DefaultOptions = ({edited, onChange}) => {
     )
 }
 
-const FontEditor = ({object}) => {
-    const {updateObject} = useContext(CanvasObjectContext)
-    const [edited, setEdited] = useState(object)
+/*
+    attributes
+    x,y,rotation
+    text
+    fontSize
+    fill
+    stroke,
+    strokeWidth,
+    font?
+
+*/
+
+const ElementEditorText = ({object}) => {
+   const dispatch = useDispatch()
 
     const onChange = (e) => {
-        console.log("onchange")
-        console.log(object)
-        setEdited((old) => ({...old, [e.target.name]: e.target.value}))
+
+        dispatch(updateObject(object.id, {
+            [e.target.name]: e.target.value
+        }))
     }
-
-    useEffect(() =>{
-        if(object.id == edited.id)
-            updateObject(object.id, edited);
-    },[edited, object])
-
-
-
-  
     
     return (
         <div>
-           <DefaultOptions edited={edited} onChange={onChange} />
+           <DefaultOptions edited={object} onChange={onChange} />
 
 
            <div className="editor__row">
                 <div className="editor__field">
                     <label className="editor__label">text:</label>
-                    <input type="text" className="editor__input" name="text" value={edited?.text} onChange={onChange}/>
+                    <input type="text" className="editor__input" name="text" value={object?.text} onChange={onChange}/>
                 </div>
 
                 <div className="editor__field">
                     <label className="editor__label">fontSize:</label>
-                    <input type="number" className="editor__input" name="fontSize" value={edited?.fontSize} onChange={onChange}/>
+                    <input type="number" className="editor__input" name="fontSize" value={object?.fontSize} onChange={onChange}/>
                 </div>
 
                 <div className="editor__field">
                     <label className="editor__label">color:</label>
-                    <input type="color" className="editor__input" name="fill" value={edited?.fill} onChange={onChange}/>
+                    <input type="color" className="editor__input" name="fill" value={object?.fill} onChange={onChange}/>
                 </div>
 
                
@@ -85,4 +89,4 @@ const FontEditor = ({object}) => {
     )
 }
 
-export default FontEditor
+export default ElementEditorText

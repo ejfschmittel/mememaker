@@ -52,15 +52,18 @@
 
 .create-selector{
     display: flex;
+  
     &__btn{
         display: block;
-        height: 8rem;
+        height: 4rem;
         flex: 1;
         cursor: pointer;
+        background: #333;
+        color: #eee;
 
         &--active{
-            filter: saturate(.8);
-            background: red;
+            filter: opacity(.8);
+            
         }
     }
 }

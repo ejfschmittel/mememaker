@@ -1,11 +1,25 @@
 import * as PIXI from "pixi.js"
 import {CANVAS_OBJECT_TYPES} from "../redux/canvasObjects/canvasObjects.types"
 import store from "../redux/store"
-import {updateObject} from "../redux/canvasObjects/canvasOjbects.actions"
+import {updateObject, setActiveObject} from "../redux/canvasObjects/canvasOjbects.actions"
 
-export const app = new PIXI.Application({
-    width: 800, height: 600, backgroundColor: 0x1099bb, resolution: window.devicePixelRatio || 1,
-});
+
+export let app;
+
+export const setUpApp = (container, dimensions) => {
+    if(app) return null; 
+
+    app = new PIXI.Application({
+        resizeTo: container, backgroundColor: 0x1099bb, resolution: 1,
+    });
+
+
+    
+    container.appendChild(app.view)  
+  
+
+
+}
 
 let elements = {}
 let displayBaseImage = null;
@@ -15,16 +29,14 @@ const displayObjectExists = (id) => {
 }
 
 const setCanvasDimensions = (width, height) => {
-
+    app.view.width = width;
+    app.view.height = height;
+    app.renderer.resize(width, height);
 }
 
 
 
-class ElementContainer extends PIXI.Container{
-    constructor(){
-        super()
-    }
-}
+
 
 
 const createTextObject = (object) => {
@@ -82,6 +94,7 @@ const createDisplayObject = (object) => {
         movable.data = event.data;
         movable.dragging = true;
         movable.alpha = .5;
+        store.dispatch(setActiveObject(object.id))
        
     }
 
@@ -117,9 +130,7 @@ const renderObject = (object) => {
         createDisplayObject(object)
 
     }
-    console.log("render object")
-    console.log(elements)
-    console.log(app.stage.children)
+
 
    
 }
@@ -140,12 +151,17 @@ const renderBaseImage = (baseImage) => {
 
 }
 
-const render = () => {
+const resizeStage = ({width, height}) => {
+    setCanvasDimensions(width, height)
+}
+
+export const render = () => {
     console.log("rerender")
    const state = store.getState();
+   console.log(state)
    
    // render base image
-
+   resizeStage(state.canvas)
    renderBaseImage(state.canvas.baseImage)
    
    const objectList = state.canvasObjects.objectList;
@@ -157,7 +173,7 @@ const render = () => {
         // render object
         renderObject(object)
    })
-   
+   app.render(app.stage);
 }
 
 store.subscribe(render)

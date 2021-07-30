@@ -3,21 +3,12 @@ import React, {useContext} from "react"
 import CanvasObjectContext from "../contexts/CanvasObjectContext"
 import "../styles/components/canvas-object-label.scss"
 const CanvasElementOverviewUI = () => {
-    const {objects, objectList} = useContext(CanvasObjectContext)
+    
 
 
     return (
         <div className="overview-ui object-labels">
-            {
-                objectList.length == 0 ? 
-                (<div>Add new elements</div>)
-                :
-                objectList.map(objectID => {
-                    const object = objects[objectID];
-                    if(object === undefined) return;
-                    return <CanvasObjectLabel key={`label-${objectID}`} object={objects[objectID]} />
-                })
-            }
+            
         </div>
     )
 }
