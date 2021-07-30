@@ -2,9 +2,6 @@ import React, {useState, useContext} from "react";
 
 import { useDispatch } from "react-redux";
 import {createTextObject} from "../redux/canvasObjects/canvasOjbects.actions"
-import CanvasObjectContext from "../contexts/CanvasObjectContext";
-
-import TextEditor from "./TextEditor"
 
 import Editor, {EditorField, EditorRow, EditorInput} from "./Editor";
 

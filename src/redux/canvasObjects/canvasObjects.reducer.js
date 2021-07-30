@@ -23,7 +23,7 @@ const reducer = (state = defaultState, action) => {
             const canvasObject = action.payload
             const objectList = [...state.objectList, canvasObject.id]
             const objects = {...state.objects, [canvasObject.id]: canvasObject}
-            return {objectList,objects, currentObject: canvasObject.id};
+            return {objectList,objects, activeObject: canvasObject.id};
         case types.UPDATE_CANVAS_OBJECT:    
             console.log("update canvas object")
             console.log(action)
