@@ -2,6 +2,7 @@ import React, {useState, useContext, useEffect} from "react"
 
 import { useDispatch } from "react-redux"
 import {updateObject} from "../redux/canvasObjects/canvasOjbects.actions"
+import {normalizeValues} from "../utils/math.utils"
 
 const DefaultOptions = ({edited, onChange}) => {
     return (
@@ -30,6 +31,9 @@ const DefaultOptions = ({edited, onChange}) => {
     width, height
 */
 
+
+
+
 const ElementEditorImage = ({object}) => {
    const dispatch = useDispatch()
 
@@ -39,11 +43,21 @@ const ElementEditorImage = ({object}) => {
             [e.target.name]: e.target.value
         }))
     }
+
+    const normalizedObject = normalizeValues(object)
     
     return (
         <div>
-           <DefaultOptions edited={object} onChange={onChange} />
-           
+           <DefaultOptions edited={normalizedObject} onChange={onChange} />
+           <div className="editor__field">
+                <label className="editor__label">width:</label>
+                <input type="number" className="editor__input" name="width" value={normalizedObject?.width} onChange={onChange}/>
+            </div>
+
+            <div className="editor__field">
+                <label className="editor__label">height:</label>
+                <input type="number" className="editor__input" name="height" value={normalizedObject?.height} onChange={onChange}/>
+            </div>
         </div>
     )
 }

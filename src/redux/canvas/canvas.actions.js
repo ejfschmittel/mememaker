@@ -17,3 +17,8 @@ export const setBaseImage = (img) => ({
     type: types.SET_BASE_IMAGE,
     payload: img
 })
+
+export const setCanvas = (canvas) => ({
+    type: types.SET_CANVAS,
+    payload: canvas
+})

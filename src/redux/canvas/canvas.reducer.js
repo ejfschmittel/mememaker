@@ -6,6 +6,7 @@ const defaultState = {
     width: 600,
     height: 400,
     showOverlay: true,
+    canvasRef: null,
 }
 
 
@@ -18,6 +19,9 @@ const reducer = (state = defaultState, action) => {
             return {...state, showOverlay: false, baseImage: action.payload}
         case types.REMOVE_BASE_IMAGE:
             return {...state}
+
+        case types.SET_CANVAS:
+            return {...state, canvasRef: action.payload}
 
         case types.HIDE_OVERLAY:
             return {...state, showOverlay: false}

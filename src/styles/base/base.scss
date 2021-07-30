@@ -58,13 +58,22 @@ body,html{
 
 .button{
     cursor: pointer;
-    border-radius: 5px;
+
     border: 1px solid #fff;
     display: block;
     padding: .3rem 1rem;
     font-size: 1.2rem;
 
+    &--ui{
+        width: 100%;
+        background: #333;
+        color: #eee;
+        border: none;
+
+    }
+
     &--main{
+        border-radius: 5px;
         background: green;
         color: #fff;
         border: 1px solid #fff;

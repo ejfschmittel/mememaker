@@ -10,7 +10,7 @@ export const setUpApp = (container, dimensions) => {
     if(app) return null; 
 
     app = new PIXI.Application({
-        resizeTo: container, backgroundColor: 0x1099bb, resolution: 1,
+        resizeTo: container, backgroundColor: 0x1099bb, resolution: 1, preserveDrawingBuffer: true
     });
 
 
@@ -113,10 +113,35 @@ const createDisplayObject = (object) => {
     app.stage.addChild(displayObject)
 }
 
+const updateImageDisplayObject = (object) => {
+    const displayObject = elements[object.id];
+    const scaleX = object.width/object.imageWidth || 1;
+    const scaleY = object.height/object.imageHeight || 1;
+    displayObject.scale.set(scaleX, scaleY)
+}
+
+const updateTextDisplayObject = (object) => {
+
+}
 
 const updateDisplayObject = (object) => {
     const displayObject = elements[object.id];
+    // general updates
     displayObject.position.set(object.x, object.y)
+   // displayObject.rotation.set(object.rotation)
+
+    // specifci updates
+
+    switch(object.type){
+        case CANVAS_OBJECT_TYPES.IMAGE:
+            updateImageDisplayObject(object)
+            break;
+        case CANVAS_OBJECT_TYPES.TEXT:
+            updateTextDisplayObject(object)
+            break;
+        default:
+            break;
+    }
 }
 
 

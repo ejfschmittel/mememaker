@@ -42,6 +42,7 @@ import {app, setUpApp, render} from "../pixijs/PixiApp"
 
 
 import {useDispatch, useSelector} from "react-redux"
+import {setCanvas} from "../redux/canvas/canvas.actions"
 
 import Viewport from "./Viewport";
 
@@ -59,11 +60,12 @@ const Canvas = () => {
     useEffect(() => {
         // set up pixi js
 
-        
+      
         setUpApp(canvasRef.current, canvasSize)
-       
+        dispatch(setCanvas(canvasRef.current))
     },[])
 
+    
 
 
 
