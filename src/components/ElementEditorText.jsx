@@ -2,42 +2,7 @@ import React, {useState, useContext, useEffect} from "react"
 import CanvasObjectContext from "../contexts/CanvasObjectContext"
 import { useDispatch } from "react-redux"
 import {updateObject} from "../redux/canvasObjects/canvasOjbects.actions"
-/*
-    x, y, rotation
-    text, color, outline, outline color
-    fontsize
-
-*/
-/*
-    update on edit
-*/
-const useElementEditor = (original) => {
-    const [edited, setEdited] = useState(original)
-
-
-    return [edited]
-}
-
-const DefaultOptions = ({edited, onChange}) => {
-    return (
-    <div className="editor__row">
-        <div className="editor__field">
-            <label className="editor__label">x:</label>
-            <input type="number" className="editor__input" name="x" value={edited?.x} onChange={onChange}/>
-        </div>
-
-        <div className="editor__field">
-            <label className="editor__label">y:</label>
-            <input type="number" className="editor__input" name="y" value={edited?.y} onChange={onChange}/>
-        </div>
-
-        <div className="editor__field">
-            <label className="editor__label">rotation:</label>
-            <input type="number" className="editor__input" name="rotation" value={edited?.rotation} onChange={onChange}/>
-        </div>
-    </div>
-    )
-}
+import{normalizeValues} from "../utils/math.utils"
 
 /*
     attributes
@@ -60,31 +25,35 @@ const ElementEditorText = ({object}) => {
             [e.target.name]: e.target.value
         }))
     }
+
+    const nObject = normalizeValues(object)
     
     return (
-        <div>
-           <DefaultOptions edited={object} onChange={onChange} />
+        <div className="text-editor">
+            <label className="text-editor__label-text">text:</label>
+          <input type="text" className="text-editor__input-text" name="text" value={nObject?.text} onChange={onChange}/>
 
+          <label className="text-editor__label-x">x:</label>
+          <input type="number" className="text-editor__input-x" name="x" value={nObject?.x} onChange={onChange}/>
 
-           <div className="editor__row">
-                <div className="editor__field">
-                    <label className="editor__label">text:</label>
-                    <input type="text" className="editor__input" name="text" value={object?.text} onChange={onChange}/>
-                </div>
+          <label className="text-editor__label-y">y:</label>
+          <input type="number" className="text-editor__input-y" name="y" value={nObject?.y} onChange={onChange}/>
 
-                <div className="editor__field">
-                    <label className="editor__label">fontSize:</label>
-                    <input type="number" className="editor__input" name="fontSize" value={object?.fontSize} onChange={onChange}/>
-                </div>
+          <label className="text-editor__label-rotation">rotation:</label>
+          <input type="number" className="text-editor__input-rotation" name="rotation" value={nObject?.rotation} onChange={onChange}/>
 
-                <div className="editor__field">
-                    <label className="editor__label">color:</label>
-                    <input type="color" className="editor__input" name="fill" value={object?.fill} onChange={onChange}/>
-                </div>
+          <label className="text-editor__label-font-size">size:</label>
+          <input type="number" className="text-editor__input-font-size" name="fontSize" value={nObject?.fontSize} onChange={onChange}/>
 
-               
-            </div>
+          <label className="text-editor__label-color">color:</label>
+          <input type="color" className="text-editor__input-color" name="fill" value={nObject?.fill} onChange={onChange}/>
+
+          <label className="text-editor__label-stroke-width">strokeWidth:</label>
+          <input type="number" className="text-editor__input-stroke-width" name="strokeWidth" value={nObject?.strokeWidth} onChange={onChange}/>
            
+
+          <label className="text-editor__label-stroke">stroke:</label>
+          <input type="color" className="text-editor__input-stroke" name="stroke" value={nObject?.stroke} onChange={onChange}/>
         </div>
     )
 }
