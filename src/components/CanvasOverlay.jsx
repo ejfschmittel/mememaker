@@ -25,6 +25,18 @@ const MEME_TEMPLATES_LIST = [
     "DistractedBoyfriend.png",
     "LeftExitOffRamp.png",
     "RunningAwayBalloon.png",
+    "BikeFall.png",
+    "OneDoesNotSimply.png",
+    "IsThisAPigeon.png",
+    "EpicHandshaker.png",
+    "ExpandingBrain.png",
+    "Mocking Spongebob.png",
+    "SadPabloEscobar.png",
+    "BatmanSlappingRobin.png",
+    "GrusPlan.png",
+    "Draw25.png",
+    "BuffDogeVS.png",
+    "BernieSupport.png"
 ]
 
 const memeTemplatePaths = MEME_TEMPLATES_LIST.map((imgName) => MEME_TEMPLATES_PATH + imgName )
