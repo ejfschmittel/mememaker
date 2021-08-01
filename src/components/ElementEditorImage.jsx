@@ -4,27 +4,6 @@ import { useDispatch } from "react-redux"
 import {updateObject} from "../redux/canvasObjects/canvasOjbects.actions"
 import {normalizeValues} from "../utils/math.utils"
 
-const DefaultOptions = ({edited, onChange}) => {
-    return (
-    <div className="editor__row">
-        <div className="editor__field">
-            <label className="editor__label">x:</label>
-            <input type="number" className="editor__input" name="x" value={edited?.x} onChange={onChange}/>
-        </div>
-
-        <div className="editor__field">
-            <label className="editor__label">y:</label>
-            <input type="number" className="editor__input" name="y" value={edited?.y} onChange={onChange}/>
-        </div>
-
-        <div className="editor__field">
-            <label className="editor__label">rotation:</label>
-            <input type="number" className="editor__input" name="rotation" value={edited?.rotation} onChange={onChange}/>
-        </div>
-    </div>
-    )
-}
-
 /*
     attributes
     x,y,rotation
@@ -44,20 +23,25 @@ const ElementEditorImage = ({object}) => {
         }))
     }
 
-    const normalizedObject = normalizeValues(object)
+    const nObject = normalizeValues(object)
     
     return (
-        <div>
-           <DefaultOptions edited={normalizedObject} onChange={onChange} />
-           <div className="editor__field">
-                <label className="editor__label">width:</label>
-                <input type="number" className="editor__input" name="width" value={normalizedObject?.width} onChange={onChange}/>
-            </div>
+        <div className="image-editor">
+            <label className="image-editor__label-x">x:</label>
+            <input type="number" className="image-editor__input-x" name="x" value={nObject?.x} onChange={onChange}/>
 
-            <div className="editor__field">
-                <label className="editor__label">height:</label>
-                <input type="number" className="editor__input" name="height" value={normalizedObject?.height} onChange={onChange}/>
-            </div>
+            <label className="image-editor__label-y">y:</label>
+            <input type="number" className="image-editor__input-y" name="y" value={nObject?.y} onChange={onChange}/>
+
+            <label className="image-editor__label-rotation">rotation:</label>
+            <input type="number" className="image-editor__input-rotation" name="rotation" value={nObject?.rotation} onChange={onChange}/>
+
+            <label className="image-editor__label-width">width:</label>
+            <input type="number" className="image-editor__input-width" name="width" value={nObject?.width} onChange={onChange}/>
+
+            <label className="image-editor__label-height">height:</label>
+            <input type="number" className="image-editor__input-height" name="height" value={nObject?.height} onChange={onChange}/>
+           
         </div>
     )
 }

@@ -30,7 +30,7 @@ const ElementEditorText = ({object}) => {
     
     return (
         <div className="text-editor">
-            <label className="text-editor__label-text">text:</label>
+          <label className="text-editor__label-text">text:</label>
           <input type="text" className="text-editor__input-text" name="text" value={nObject?.text} onChange={onChange}/>
 
           <label className="text-editor__label-x">x:</label>

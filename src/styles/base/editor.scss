@@ -165,3 +165,64 @@
         font-size: .9rem;
     }
 }
+
+
+.image-editor{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: .5rem;
+
+
+    &__label-x{
+        grid-column: 1 / 1;
+    }
+
+    &__input-x{
+        grid-column: 2/ 4;      
+    }
+
+    &__label-y{
+        grid-column: 4 / 4;
+    }
+
+    &__input-y{
+        grid-column: 5/ 7;
+    }
+
+    &__label-rotation{
+        grid-column: 1 / 1;
+        grid-row: 2/2;
+    }
+
+    &__input-rotation{
+        grid-column: 2/ 4;
+        grid-row: 2/2;
+    }
+
+    
+    &__label-width{
+        grid-column: 1 / 1;
+        grid-row: 3/3;
+    }
+
+    &__input-width{
+        grid-column: 2/ 4;   
+        grid-row: 3/3;   
+    }
+
+    &__label-height{
+        grid-column: 4 / 4;
+        grid-row: 3/3;
+    }
+
+    &__input-height{
+        grid-column: 5/ 7;
+        grid-row: 3/3;
+    }
+
+    & input{
+        width: 100%;
+        padding: .2rem .2rem;
+        font-size: .9rem;
+    }
+}

@@ -38,7 +38,7 @@ const CreateElementUI = () => {
             console.log(app.view)
 
            var link = document.createElement('a');
-            link.download = 'filename.png';
+            link.download = 'meme.png';
            
             link.href = app.view.toDataURL("image/png")
             link.click();
@@ -49,7 +49,7 @@ const CreateElementUI = () => {
         <div className="create-ui">
 
             <div>
-                <button className="button button--ui button--download">Download</button>
+                <button className="button button--ui button--download" onClick={onDownloadClick}>Download</button>
             </div>
             <div className="create-selector">
                 

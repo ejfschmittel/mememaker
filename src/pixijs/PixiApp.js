@@ -74,6 +74,8 @@ const createDisplayObject = (object) => {
     displayObject.interactive = true;
     displayObject.buttonMode = true;
 
+    displayObject.anchor.set(.5,.5)
+
     const onDragMove = (event) => {
         const sprite = event.currentTarget 
         if (sprite.dragging) {
