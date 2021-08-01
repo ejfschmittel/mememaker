@@ -8,14 +8,7 @@ const defaultState = {
 }
 
 
-const canvasObjectReducer = (state = {}, action) => {
-    switch(action.type){
-        case types.UPDATE_CANVAS_OBJECT:
-            return {...state, ...action.data}
-        default:
-            return state
-    }
-}
+
 
 const reducer = (state = defaultState, action) => {
     switch(action.type){
@@ -37,7 +30,15 @@ const reducer = (state = defaultState, action) => {
             // remove from object list
             // remove from objects
             // remove currrent
-            return state;
+            return {
+                ...state, 
+                activeObject: state.activeObject == action.payload ? null : state.activeObject,
+                objectList: state.objectList.filter((id) => id !== action.payload),
+                objects: {
+                    ...state.objects,
+                    [action.payload]: { deleted:true }
+                }
+            };
 
         case types.SET_ACTIVE_OBJECT:
             return {...state, activeObject: action.payload}

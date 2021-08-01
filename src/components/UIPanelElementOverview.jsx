@@ -2,6 +2,7 @@ import React, {useContext} from "react"
 import { useSelector, useDispatch } from "react-redux"
 
 import CanvasObjectContext from "../contexts/CanvasObjectContext"
+import {setActiveObject, deleteObject} from "../redux/canvasObjects/canvasOjbects.actions"
 import "../styles/components/canvas-object-label.scss"
 
 
@@ -25,14 +26,17 @@ const CanvasElementOverviewUI = () => {
 }
 
 const CanvasObjectLabel = ({object, active}) => {
-  
+    const dispatch = useDispatch()
 
     const activeObject = () => {
-       
+        if(active == false){
+            dispatch(setActiveObject(object.id))
+        }
     }
 
-    const deleteObject = () => {
-
+    const dispatchDeleteObject = () => {
+        // 
+        dispatch(deleteObject(object.id))
     }
 
     return (
@@ -50,7 +54,7 @@ const CanvasObjectLabel = ({object, active}) => {
              
             </div>
 
-            <button className="object-label__delete" onClick={deleteObject}>
+            <button className="object-label__delete" onClick={dispatchDeleteObject}>
                 Delete
             </button>
         </div>

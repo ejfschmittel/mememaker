@@ -190,6 +190,15 @@ const resizeStage = ({width, height}) => {
     setCanvasDimensions(width, height)
 }
 
+// remove object
+
+
+const removeObject = (id) => {
+    const element = elements[id]
+    app.stage.removeChild(element)
+    elements[id] = null
+}
+
 export const render = () => {
     console.log("rerender")
    const state = store.getState();
@@ -202,11 +211,20 @@ export const render = () => {
    const objectList = state.canvasObjects.objectList;
    const objects = state.canvasObjects.objects;
 
+   // clear deleted objects = 
+   Object.keys(objects).map((id) => {
+    const object = objects[id];
+    if(object.deleted) removeObject(id)
+   })
+ 
    objectList.forEach((objectID) => {
+      
         // create or update
         const object = objects[objectID];
+
         // render object
         renderObject(object)
+
    })
    app.render(app.stage);
 }

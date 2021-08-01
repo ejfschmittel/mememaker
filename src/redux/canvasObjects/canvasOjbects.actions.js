@@ -45,6 +45,11 @@ export const updateObject = (id, data) => ({
     }
 })
 
+export const deleteObject = (id) => ({
+    type: types.DELETE_CANVAS_OBJECT,
+    payload: id
+})
+
 export const setActiveObject = (objectID) => ({
     type: types.SET_ACTIVE_OBJECT,
     payload: objectID
