@@ -13,6 +13,8 @@ import FaceImageDisplay from "./FaceImageDisplay";
 import {canvasToBlob} from "../utils/images.utils"
 import "../styles/components/face-extractor.scss"
 
+import LoadingOverlay from "../components/LoadingOverlay"
+
 
 
 let blazefaceModel = null;
@@ -135,17 +137,16 @@ const FaceExtractor = ({image}) => {
 
     return (
         <div className="face-extractor">
-            <button  onClick={startFaceExtraction} className="face-extractor__btn">Extract Faces</button>
+            <button  onClick={startFaceExtraction} className="button button--main">Extract Faces</button>
 
             <div className="face-extractor__display">
-                <div className="face-extractor__loading">
-                    loading...
-                </div>
-                <div className="face-extractor__list">
-                    {faceImages.map((faceImage, idx) => {
-                        return <FaceImageDisplay img={faceImage} key={`faceimage-${idx}`}/>
-                    })}
-                </div>
+                <LoadingOverlay isLoading={isLoading}></LoadingOverlay>
+                    <div className="face-extractor__list">
+                        {faceImages.map((faceImage, idx) => {
+                            return <FaceImageDisplay img={faceImage} key={`faceimage-${idx}`}/>
+                        })}
+                    </div>
+                
             </div>
            
             <canvas ref={canvasRef} className="face-extractor__canvas"></canvas>
