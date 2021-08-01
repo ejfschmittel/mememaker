@@ -15,7 +15,7 @@ const CanvasElementOverviewUI = () => {
 
     return (
         <div className="overview-ui object-labels">
-            
+            {canvasObjectList.length == 0 && (<div>Canvas Element Overview</div>)}
             {canvasObjectList.map((objectID) => {
                 const obj = canvasObjects[objectID];
                 return <CanvasObjectLabel object={obj} active={activeObject == obj.id}/>

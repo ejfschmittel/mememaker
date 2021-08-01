@@ -26,7 +26,7 @@ const TextCreator = () => {
                     <EditorInput type="text" onChange={onTextChange} value={text}/> 
                 </EditorField>
             </EditorRow>
-            <button className="button button-main mt--1" onClick={onClick}>Add Text To Canvas</button>
+            <button className="button button--main mt--1" onClick={onClick}>Add Text To Canvas</button>
         </Editor>
     )
 }

@@ -17,9 +17,16 @@
     &__row{
         display: flex;
         margin: .5rem 0;
+        
     }
     &__field{
         margin: 0 .5rem;
+
+        & input{
+            width: 100%;
+            padding: .3rem;
+        }
+       
     }
 
     &--min &__field{
@@ -38,7 +45,7 @@
     }
 
     &__input{
-        width: 4rem;
+        width: 100%;
         padding: .3rem;
 
         &--big{
