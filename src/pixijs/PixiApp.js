@@ -16,7 +16,7 @@ export const setUpApp = (container, dimensions) => {
 
     
     container.appendChild(app.view)  
-  
+    app.stage.sortableChildren = true; 
 
 
 }
@@ -75,6 +75,7 @@ const createDisplayObject = (object) => {
     displayObject.buttonMode = true;
 
     displayObject.anchor.set(.5,.5)
+    displayObject.zIndex = 5;
 
     const onDragMove = (event) => {
         const sprite = event.currentTarget 
@@ -172,6 +173,10 @@ const renderObject = (object) => {
 
 
 const renderBaseImage = (baseImage) => {
+
+    // picture changed
+    // picture added
+    // picture removed
     
     if(baseImage && displayBaseImage == null){
         const imgSprite = PIXI.Sprite.from(baseImage.src);
@@ -181,6 +186,14 @@ const renderBaseImage = (baseImage) => {
         // remove base image
         app.stage.removeChild(baseImage);
         displayBaseImage = null;
+    }else if(baseImage && displayBaseImage){
+        if(baseImage.src !== displayBaseImage.src){
+            // remove old and add new
+            app.stage.removeChild(displayBaseImage)
+            const imgSprite = PIXI.Sprite.from(baseImage.src);
+            displayBaseImage = imgSprite;
+            app.stage.addChild(imgSprite);
+        }
     }
 
 

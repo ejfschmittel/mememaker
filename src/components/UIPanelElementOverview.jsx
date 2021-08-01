@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux"
 
 import CanvasObjectContext from "../contexts/CanvasObjectContext"
 import {setActiveObject, deleteObject} from "../redux/canvasObjects/canvasOjbects.actions"
+import {showOverlay} from "../redux/canvas/canvas.actions"
 import "../styles/components/canvas-object-label.scss"
-
+import "../styles/components/base-image-display.scss"
 
 const CanvasElementOverviewUI = () => {
    
@@ -15,12 +16,52 @@ const CanvasElementOverviewUI = () => {
 
 
     return (
-        <div className="overview-ui object-labels">
-            {canvasObjectList.length == 0 && (<div>Canvas Element Overview</div>)}
-            {canvasObjectList.map((objectID) => {
-                const obj = canvasObjects[objectID];
-                return <CanvasObjectLabel object={obj} active={activeObject == obj.id}/>
-            })}
+        <div className="overview-ui">
+            <BaseImageDisplay />
+            <div className="object-labels"> 
+                {canvasObjectList.length == 0 && (<div>Canvas Element Overview</div>)}
+                {canvasObjectList.map((objectID) => {
+                    const obj = canvasObjects[objectID];
+                    return <CanvasObjectLabel object={obj} active={activeObject == obj.id}/>
+                })}
+            </div>
+        </div>
+    )
+}
+
+// change, size of canvas
+const BaseImageDisplay = () => {
+    const dispatch = useDispatch();
+    const canvasDimensions = useSelector((state) => ({width: state.canvas.width, height: state.canvas.height}))
+    const baseImage = useSelector(state => state.canvas.baseImage)
+
+
+    let name = "None";
+    if(baseImage){
+        const splitPath = baseImage.src.split("/");
+        name = splitPath[splitPath.length-1]
+    }
+
+    const openBaseImageOverlay = () => {
+        dispatch(showOverlay())
+    }
+   
+    return (
+        <div className="base-image-display"> 
+            <div className="base-image-display__img-container">
+
+                {baseImage ? 
+                <img className="base-image-display__img" src={baseImage.src}/>    
+                :
+                null
+                }
+                
+            </div>
+            <div className="base-image-display__info">
+                <div className="base-iamge-display__info-text">BaseImage: {name}</div>
+                <div>Dimensions: {canvasDimensions.width} x {canvasDimensions.height}</div>
+            </div>
+            <button className="button button--main mt--1" onClick={openBaseImageOverlay}>Change Base Image</button>
         </div>
     )
 }
