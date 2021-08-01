@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js"
 import {CANVAS_OBJECT_TYPES} from "../redux/canvasObjects/canvasObjects.types"
 import store from "../redux/store"
 import {updateObject, setActiveObject} from "../redux/canvasObjects/canvasOjbects.actions"
-
+import {degreeToRadians} from "../utils/math.utils"
 
 export let app;
 
@@ -121,14 +121,22 @@ const updateImageDisplayObject = (object) => {
 }
 
 const updateTextDisplayObject = (object) => {
-
+    console.log(object)
+    const displayObject = elements[object.id];
+    displayObject.style = new PIXI.TextStyle({
+        fontSize: parseInt(object?.fontSize) || 32,
+        fill: object.fill ? PIXI.utils.string2hex(object.fill) : 0x000000,
+        strokeThickness: object?.strokeWidth || 0,
+        stroke: object.stroke ? PIXI.utils.string2hex(object.stroke) : 0x000000,
+    })
+    displayObject.text = object.text;
 }
 
 const updateDisplayObject = (object) => {
     const displayObject = elements[object.id];
     // general updates
     displayObject.position.set(object.x, object.y)
-   // displayObject.rotation.set(object.rotation)
+    displayObject.rotation = object?.rotation ?  degreeToRadians(object.rotation) : 0
 
     // specifci updates
 

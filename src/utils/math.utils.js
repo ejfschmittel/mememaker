@@ -10,3 +10,7 @@ export const normalizeValues = (obj) => {
         
     },{})
 }
+
+export const degreeToRadians = (angle) => {
+    return angle * (Math.PI / 180); 
+}
