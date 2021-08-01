@@ -25,7 +25,7 @@ const FaceImageDisplay = ({img}) => {
     }
 
     return (
-        <div className="face-image">
+        <div className="face-image" onClick={addImageToCanvas}>
             <div className="face-image__img-container">
                 <img src={image?.src} className="face-image__img"/>
             </div>
