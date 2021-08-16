@@ -25,9 +25,9 @@ const ImageCreator = () => {
     }
 
     return (
-        <div className="ui-panel">
+        <div className="ui-component">
             <ImageUpload image={image} onChange={onImageChange} />
-            <button className="button button--main mt--1" onClick={addImageToCanvas} disabled={image == null}>Add Image To Canvas</button>
+            <button className="button button--main mt--2" onClick={addImageToCanvas} disabled={image == null}>Add Image To Canvas</button>
             
             <FaceExtractor image={image} />
         </div>

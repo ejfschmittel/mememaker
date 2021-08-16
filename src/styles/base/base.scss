@@ -47,132 +47,13 @@ body,html{
 }
 
 
-.button{
-    cursor: pointer;
-
-    border: 1px solid #fff;
-    display: block;
-    padding: .3rem 1rem;
-    font-size: 1.2rem;
-
-    &--ui{
-        width: 100%;
-        background: #333;
-        color: #eee;
-        border: 1px solid #aaa;
-        padding: 1rem 0;
-        transition: all .3;
-
-        &--active{
-            background: #555;
-            
-        }
-
-        &:hover{
-            background: #444;
-        }
-    }
-
-
-    &--download{
-        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-    
-       
-        &:hover{
-           
-            animation:slidebg 5s linear infinite;
-            background-image:     linear-gradient(
-                to right, 
-                #E7484F,
-                #E7484F 16.65%,
-                #F68B1D 16.65%,
-                #F68B1D 33.3%,
-                #FCED00 33.3%,
-                #FCED00 49.95%,
-                #009E4F 49.95%,
-                #009E4F 66.6%,
-                #00AAC3 66.6%,
-                #00AAC3 83.25%,
-                #732982 83.25%,
-                #732982 100%,
-                #E7484F 100%
-               
-               
-               
-              );
-        }
-
-        &:active{
-            filter: saturate(.5)
-        }
-
-        &:disabled{
-            filter: saturate(.3);
-            cursor: not-allowed;
-        }
-    }
-
   
-
-
-
-    &--main{
-        border-radius: 5px;
-        background: green;
-        color: #fff;
-        border: 1px solid #fff;
-        margin: 0 auto;
-        box-shadow: 0 .2rem .4rem rgba(0,0,0,.6);
-        transition: all .3s;
-
-        &:active{
-            box-shadow: 0 .2rem .2rem rgba(0,0,0,.6);
-            transform: translateY(2px);
-        }
-
-        &:hover{
-            background-image:     linear-gradient(
-                to right, 
-                #E7484F,
-                #E7484F 16.65%,
-                #F68B1D 16.65%,
-                #F68B1D 33.3%,
-                #FCED00 33.3%,
-                #FCED00 49.95%,
-                #009E4F 49.95%,
-                #009E4F 66.6%,
-                #00AAC3 66.6%,
-                #00AAC3 83.25%,
-                #732982 83.25%,
-                #732982 100%,
-                #E7484F 100%
-               
-               
-               
-              );
-            animation:slidebg 5s linear infinite;
-        }
-
-        &:disabled{
-            filter: saturate(.3);
-            cursor: not-allowed;
-        }
-
-        
-    }
-}
-
-@keyframes slidebg {
-    to {
-      background-position:20vw;
-    }
-  }
-  
-.ui-panel{
+.ui-component{
     background: #333;
     margin: 1rem;
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: .5rem;
+    color: #fff;
 }
 
 .mt{

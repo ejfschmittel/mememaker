@@ -1,76 +1,15 @@
-.editor{
-    min-height: 200px;
 
-    background: #333;
-    max-width: 800px;
-    width: 90%;
-    margin: 0 auto;
-    color: #fff;
-    padding: 1rem;
-    border-radius: .5rem;
-    margin: 1rem;
-
-    &--min &__row{
-        flex-direction: column;
-        margin: 0;
-    }
-
-    &__row{
-        display: flex;
+.text-creator{
+    &__input-container{
+        background: red;
         margin: .5rem 0;
-        
-    }
-    &__field{
-        margin: 0 .5rem;
-        display: flex;
-
-        & input{
-            width: 100%;
-            padding: .3rem;
-        }
-       
-    }
-
-    &--min &__field{
-        display: flex;
-        align-items: center;
-       
-    }
-
-    &__label{
-        margin-right: .3rem;
-        font-weight: bold;
-    }
-
-    &--min &__label{
-        width: 100px;
+        margin-bottom: 2rem;
     }
 
     &__input{
         width: 100%;
         padding: .3rem;
-
-        &--big{
-            width: 8rem;
-        }
-    }
-
-    
-}
-
-.editors{
-
-    &__input{
-
-        &--short{
-            width: 3.2rem;
-            margin: 0 .2rem;
-        }
-    }
-
-    &__row{
-        display: flex;
-        justify-content: space-evenly;
+        font-size: 1.1rem;
     }
 }
 

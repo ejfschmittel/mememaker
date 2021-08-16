@@ -3,7 +3,7 @@ import React, {useState, useContext} from "react";
 import { useDispatch } from "react-redux";
 import {createTextObject} from "../redux/canvasObjects/canvasOjbects.actions"
 
-import Editor, {EditorField, EditorRow, EditorInput} from "./Editor";
+
 
 
 const TextCreator = () => {
@@ -20,14 +20,13 @@ const TextCreator = () => {
     }
 
     return (
-        <Editor className="editor--min">
-            <EditorRow>
-                <EditorField>
-                    <EditorInput type="text" onChange={onTextChange} value={text}/> 
-                </EditorField>
-            </EditorRow>
+
+        <div className="ui-component text-creator">
+            <div className="text-creator__input-container">
+                <input type="text" onChange={onTextChange} value={text} className="text-creator__input"/> 
+            </div>
             <button className="button button--main mt--1" onClick={onClick}>Add Text To Canvas</button>
-        </Editor>
+        </div>
     )
 }
 

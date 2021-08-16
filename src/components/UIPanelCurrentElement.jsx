@@ -25,12 +25,12 @@ const CurrentlySelectedElementUI = () => {
     return (
         <div className="selected-ui">
 
-            <div className="editor">
+            <div className="ui-component">
 
                 {activeObject ? 
                    renderActiveObjectEdtior(activeObject)
                 :
-                    "select an item to edit"
+                    "Select an item to edit"
                 }
                 
             </div>
