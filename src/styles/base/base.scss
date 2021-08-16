@@ -41,6 +41,9 @@ body,html{
 .selected-ui{
     background: #ccc;
     grid-area: bottom;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -148,6 +151,11 @@ body,html{
                
               );
             animation:slidebg 5s linear infinite;
+        }
+
+        &:disabled{
+            filter: saturate(.3);
+            cursor: not-allowed;
         }
 
         

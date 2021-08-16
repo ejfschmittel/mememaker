@@ -137,7 +137,7 @@ const FaceExtractor = ({image}) => {
 
     return (
         <div className="face-extractor">
-            <button  onClick={startFaceExtraction} className="button button--main">Extract Faces</button>
+            <button  onClick={startFaceExtraction} className="button button--main" disabled={image == null}>Extract Faces</button>
 
             <div className="face-extractor__display">
                 <LoadingOverlay isLoading={isLoading}></LoadingOverlay>

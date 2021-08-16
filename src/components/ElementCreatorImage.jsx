@@ -11,13 +11,13 @@ const ImageCreator = () => {
     const [image, setImage] = useState(null)
     const [isLoadingImage, setIsLoadingImage] = useState(null)
 
-    const [faceImages, setFaceImages] = useState([])
-
 
     const onImageChange = async (e) => {
         console.log("load image")
+        setIsLoadingImage(true)
         const loadedImage = await loadImage(e.target.files[0])
         setImage(loadedImage)
+        setIsLoadingImage(false)
     }
 
     const addImageToCanvas = () => {
@@ -27,7 +27,7 @@ const ImageCreator = () => {
     return (
         <div className="ui-panel">
             <ImageUpload image={image} onChange={onImageChange} />
-            <button className="button button--main mt--1" onClick={addImageToCanvas}>Add Image To Canvas</button>
+            <button className="button button--main mt--1" onClick={addImageToCanvas} disabled={image == null}>Add Image To Canvas</button>
             
             <FaceExtractor image={image} />
         </div>
