@@ -1,5 +1,4 @@
 import React, {useState, useContext, useEffect} from "react"
-import CanvasObjectContext from "../contexts/CanvasObjectContext"
 import { useDispatch } from "react-redux"
 import {updateObject} from "../redux/canvasObjects/canvasOjbects.actions"
 import{normalizeValues} from "../utils/math.utils"

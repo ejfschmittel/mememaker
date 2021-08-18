@@ -3,14 +3,17 @@ import {CANVAS_OBJECT_TYPES} from "../redux/canvasObjects/canvasObjects.types"
 import store from "../redux/store"
 import {updateObject, setActiveObject} from "../redux/canvasObjects/canvasOjbects.actions"
 import {degreeToRadians} from "../utils/math.utils"
+import PixiCurrentObjectUI from "./PixiCurrentObjectUI"
 
 export let app;
+
+let currentObjectUI = null;
 
 export const setUpApp = (container, dimensions) => {
     if(app) return null; 
 
     app = new PIXI.Application({
-        resizeTo: container, backgroundColor: 0x1099bb, resolution: 1, preserveDrawingBuffer: true
+        resizeTo: container, backgroundColor: 0xffffff, resolution: 1, preserveDrawingBuffer: true
     });
 
 
@@ -223,6 +226,7 @@ export const render = () => {
    
    const objectList = state.canvasObjects.objectList;
    const objects = state.canvasObjects.objects;
+   const currentObject = state.canvasObjects.activeObject;
 
    // clear deleted objects = 
    Object.keys(objects).map((id) => {
@@ -239,6 +243,27 @@ export const render = () => {
         renderObject(object)
 
    })
+
+
+   if(!currentObjectUI){
+       currentObjectUI = new PixiCurrentObjectUI(app)
+    
+
+       console.log(currentObjectUI)
+       app.stage.addChild(currentObjectUI);
+     
+
+      
+   }
+
+   // handle current object ui
+   currentObjectUI.setCurrentObject(currentObject ? objects[currentObject] : null, elements)
+   currentObjectUI.renderUI()
+
+   console.log(app.stage.children)
+
+
+
    app.render(app.stage);
 }
 

@@ -1,6 +1,5 @@
 import React, {useState, useContext} from "react"
 import {loadImageFromURL} from "../utils/images.utils"
-import CanvasObjectContext from "../contexts/CanvasObjectContext";
 
 /*
     select start image
@@ -54,9 +53,17 @@ const CanvasStartOverlay = ({show}) => {
         // check if image is url or file url
         const image = await loadImageFromURL(img)
 
+        console.log("loaded image")
+        console.log(image)
+        console.log(image.width, image.height)
         dispatch(setCanvasSize(image.width, image.height))
         dispatch(setBaseImage(image))
      
+    }
+
+    const setWhiteBackground = () => {
+        dispatch(setCanvasSize(600, 400))
+        dispatch(setBaseImage(null))
     }
 
     return (
@@ -65,7 +72,7 @@ const CanvasStartOverlay = ({show}) => {
                 <ImageOverviewAndSelector images={memeTemplatePaths} onImageClick={onImageClick} />
             </div>
             <div className="canvas-overlay__without-img">
-                <button className="button button--main">Continue with white background</button>
+                <button className="button button--main" onClick={setWhiteBackground}>Continue with white background</button>
             </div>
         </div>
     )
@@ -79,10 +86,27 @@ const CanvasStartOverlay = ({show}) => {
 const ImageOverviewAndSelector = ({images, onImageClick}) => {
 
 
+    const onCustomImageSelect = async (e) => {
+        const imagePath = URL.createObjectURL(e.target.files[0]);
+
+        const files = e.target.files
+
+        if (FileReader && files && files.length) {
+            var fr = new FileReader();
+            fr.onload = function () {
+                onImageClick(fr.result);
+                
+            }
+            fr.readAsDataURL(files[0]);
+        }
+    
+
+    }
+
     return (
         <div className="image-overview-selector">
             <label className="image-overview-selector__label image-overview-selector__item">
-                <input type="file" className="image-overview-selector__input" />
+                <input type="file" className="image-overview-selector__input" onChange={onCustomImageSelect}/>
                 Select custom image
             </label>
 

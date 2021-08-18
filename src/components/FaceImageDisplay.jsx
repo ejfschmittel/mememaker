@@ -3,8 +3,6 @@ import {useDispatch} from "react-redux"
 import { createImageObject } from "../redux/canvasObjects/canvasOjbects.actions"
 import {loadImage} from "../utils/images.utils"
 
-import CanvasObjectContext from "../contexts/CanvasObjectContext";
-
 // render face and button to add to canvas
 const FaceImageDisplay = ({img}) => {
     const dispatch = useDispatch()

@@ -1,7 +1,6 @@
 import React, {useContext} from "react"
 import { useSelector, useDispatch } from "react-redux"
 
-import CanvasObjectContext from "../contexts/CanvasObjectContext"
 import {setActiveObject, deleteObject} from "../redux/canvasObjects/canvasOjbects.actions"
 import {showOverlay} from "../redux/canvas/canvas.actions"
 import "../styles/components/canvas-object-label.scss"

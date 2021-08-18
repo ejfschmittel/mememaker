@@ -30,9 +30,9 @@ const FaceExtractor = ({image}) => {
         console.log("loading models...")
         if(!blazefaceModel) blazefaceModel = await blazeface.load();
         if(!bodyPixModel) bodyPixModel = await bodyPix.load({         
-            architecture: 'ResNet50',
-            outputStride: 16,
-            quantBytes: 2
+            architecture: 'MobileNetV1',
+            outputStride: 8,
+            quantBytes: 4
         });
     }
 
